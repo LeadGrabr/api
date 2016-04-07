@@ -1,0 +1,34 @@
+{
+    "rules": {
+        "import/default": 0,
+        "import/no-duplicates": 0,
+        "import/named": 0,
+        "import/namespace": 0,
+        "import/no-unresolved": 0,
+        "import/no-named-as-default": 2,
+        "comma-dangle": 0,  // not sure why airbnb turned this on. gross!
+        "no-console": 0,
+        "no-alert": 0,
+        "semi": [2, "never"],
+        "indent": [2, 4, {"SwitchCase": 0}],
+        "id-length": [2, { "min": 2, "max": 30, "exceptions": ["_", "$"]}],
+        "no-param-reassign": [2, {"props": false}],
+    },
+    "env": {
+        "node": true,
+        "mocha": true
+    },
+    "plugins": [
+        "import"
+    ],
+    "settings": {
+        "import/parser": "babel-eslint",
+        "import/resolve": {
+          moduleDirectory: ["node_modules", "src"]
+        }
+    },
+    "extends": [
+        "eslint:recommended",
+        "airbnb/base"
+    ]
+}
