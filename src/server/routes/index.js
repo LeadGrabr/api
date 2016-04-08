@@ -1,5 +1,5 @@
 import express from 'express'
-import leadsRoutes from './components/leads/routes'
+import leadsRoutes from '../components/leads/routes'
 
 const router = express.Router()    // eslint-disable-line new-cap
 

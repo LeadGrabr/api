@@ -6,7 +6,7 @@ export default {
         body: {
             name: Joi.string().required(),
             phone: Joi.string().regex(/^[1-9][0-9]{9}$/),
-            email: Joi.email().required()
+            email: Joi.string().email().required()
         }
     },
 
