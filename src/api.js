@@ -6,13 +6,20 @@ import app from './config/express'
 // promisify mongoose
 Promise.promisifyAll(mongoose)
 
+const debug = require('debug')('Babel-Express-Mongoose-Eslint-Rest-Boilerplate:index')
+
 // connect to mongo db
+
 mongoose.connect(config.db, { server: { socketOptions: { keepAlive: 1 } } })
+mongoose.connection.on('connecting', () => {
+    console.log(`connecting to database: ${config.db}`)
+})
+mongoose.connection.on('connected', () => {
+    console.log(`connected to database: ${config.db}`)
+})
 mongoose.connection.on('error', () => {
     throw new Error(`unable to connect to database: ${config.db}`)
 })
-
-const debug = require('debug')('Babel-Express-Mongoose-Eslint-Rest-Boilerplate:index')
 
 // listen on port config.port
 app.listen(config.port, () => {
