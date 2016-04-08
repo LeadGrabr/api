@@ -30,7 +30,8 @@
     "start-debug": {
       "command": "nodemon --exec 'npm run lint && npm run build && node --debug ./build/index.js'",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "development",
+        "PORT": 3000
       }
     },
     "start-dev": {
