@@ -1,10 +1,10 @@
 import Promise from 'bluebird'
 import mongoose from 'mongoose'
 import httpStatus from 'http-status'
-import APIError from '../helpers/APIError'
+import APIError from '../../helpers/APIError'
 
 /**
- * User Schema
+ * Lead Schema
  */
 const LeadSchema = new mongoose.Schema({
     name: {
@@ -52,9 +52,9 @@ LeadSchema.statics = {
      */
     get(id) {
         return this.findById(id)
-            .execAsync().then((user) => {
-                if (user) {
-                    return user
+            .execAsync().then((lead) => {
+                if (lead) {
+                    return lead
                 }
                 const err = new APIError('No such lead exists!', httpStatus.NOT_FOUND)
                 return Promise.reject(err)

@@ -17,9 +17,9 @@ router.route('/:leadId')
     .get(controller.get)
 
     /** DELETE /api/users/:userId - Delete user */
-    .delete(userCtrl.remove)
+    .delete(controller.remove)
 
-/** Load user when API with userId route parameter is hit */
-router.param('userId', userCtrl.load)
+/** Load lead when API with leadId route parameter is hit */
+router.param('leadId', controller.load)
 
 export default router

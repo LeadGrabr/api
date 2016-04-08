@@ -1,77 +1,77 @@
 import Lead from './model'
 
 /**
- * Load user and append to req.
+ * Load lead and append to req.
  */
 function load(req, res, next, id) {
-    User.get(id).then((user) => {
-        req.user = user        // eslint-disable-line no-param-reassign
+    Lead.get(id).then((lead) => {
+        req.lead = lead        // eslint-disable-line no-param-reassign
         return next()
     }).error((err) => next(err))
 }
 
 /**
- * Get user
- * @returns {User}
+ * Get lead
+ * @returns {Lead}
  */
 function get(req, res) {
-    return res.json(req.user)
+    return res.json(req.lead)
 }
 
 /**
- * Create new user
- * @property {string} req.body.username - The username of user.
- * @property {string} req.body.mobileNumber - The mobileNumber of user.
- * @returns {User}
+ * Create new lead
+ * @property {string} req.body.leadname - The leadname of lead.
+ * @property {string} req.body.mobileNumber - The mobileNumber of lead.
+ * @returns {Lead}
  */
 function create(req, res, next) {
-    const user = new User({
+    const lead = new Lead({
         name: req.body.name,
         phone: req.body.phone,
         email: req.body.email
     })
 
-    user.saveAsync()
-        .then((savedUser) => res.json(savedUser))
+    lead.saveAsync()
+        .then((savedLead) => res.json(savedLead))
         .error((err) => next(err))
 }
 
 /**
- * Update existing user
- * @property {string} req.body.username - The username of user.
- * @property {string} req.body.mobileNumber - The mobileNumber of user.
- * @returns {User}
+ * Update existing lead
+ * @property {string} req.body.leadname - The leadname of lead.
+ * @property {string} req.body.mobileNumber - The mobileNumber of lead.
+ * @returns {Lead}
  */
 function update(req, res, next) {
-    const user = req.user
-    user.username = req.body.username
-    user.mobileNumber = req.body.mobileNumber
+    const lead = req.lead
+    lead.leadname = req.body.leadname
+    lead.mobileNumber = req.body.mobileNumber
 
-    user.saveAsync()
-        .then((savedUser) => res.json(savedUser))
+    lead.saveAsync()
+        .then((savedLead) => res.json(savedLead))
         .error((err) => next(err))
 }
 
 /**
- * Get user list.
- * @property {number} req.query.skip - Number of users to be skipped.
- * @property {number} req.query.limit - Limit number of users to be returned.
- * @returns {User[]}
+ * Get lead list.
+ * @property {number} req.query.skip - Number of leads to be skipped.
+ * @property {number} req.query.limit - Limit number of leads to be returned.
+ * @returns {Lead[]}
  */
 function list(req, res, next) {
     const { limit = 50, skip = 0 } = req.query
-    User.list({ limit, skip }).then((users) => res.json(users))
+    Lead.list({ limit, skip }).then((leads) => res.json(leads))
         .error((err) => next(err))
 }
 
 /**
- * Delete user.
- * @returns {User}
+ * Delete lead.
+ * @returns {Lead}
  */
 function remove(req, res, next) {
-    const user = req.user
-    user.removeAsync()
-        .then((deletedUser) => res.json(deletedUser))
+    const lead = req.lead
+    lead.removeAsync()
+        .then((deletedLead) => res.json(deletedLead))
         .error((err) => next(err))
 }
 
