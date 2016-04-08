@@ -15,6 +15,7 @@
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-server",
+    "deploy": "npm run build && eb deploy",
     "dev": "better-npm-run start-dev",
     "debug": "better-npm-run start-debug",
     "lint": "eslint -c .eslintrc src"
