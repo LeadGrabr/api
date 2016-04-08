@@ -24,6 +24,7 @@ mongoose.connection.on('error', () => {
 // listen on port config.port
 app.listen(config.port, () => {
     debug(`server started on port ${config.port} (${config.env})`)
+    console.log(`server started on port ${config.port} (${config.env})`)
 })
 
 export default app
