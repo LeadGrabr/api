@@ -6,18 +6,21 @@ import APIError from '../helpers/APIError'
 /**
  * User Schema
  */
-const UserSchema = new mongoose.Schema({
-    username: {
+const LeadSchema = new mongoose.Schema({
+    name: {
         type: String,
         required: true
     },
-    mobileNumber: {
+    phone: {
         type: String,
         required: true,
         match: [
             /^[1-9][0-9]{9}$/,
             'The value of path {PATH} ({VALUE}) is not a valid mobile number.'
         ]
+    },
+    email: {
+        type: String
     },
     createdAt: {
         type: Date,
@@ -35,13 +38,13 @@ const UserSchema = new mongoose.Schema({
 /**
  * Methods
  */
-UserSchema.method({
+LeadSchema.method({
 })
 
 /**
  * Statics
  */
-UserSchema.statics = {
+LeadSchema.statics = {
     /**
      * Get user
      * @param {ObjectId} id - The objectId of user.
@@ -53,7 +56,7 @@ UserSchema.statics = {
                 if (user) {
                     return user
                 }
-                const err = new APIError('No such user exists!', httpStatus.NOT_FOUND)
+                const err = new APIError('No such lead exists!', httpStatus.NOT_FOUND)
                 return Promise.reject(err)
             })
     },
@@ -76,4 +79,4 @@ UserSchema.statics = {
 /**
  * @typedef User
  */
-export default mongoose.model('User', UserSchema)
+export default mongoose.model('Lead', LeadSchema)

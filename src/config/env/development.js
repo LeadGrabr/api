@@ -1,5 +1,5 @@
 export default {
     env: 'development',
-    db: 'mongodb://localhost/Babel-Express-Mongoose-Eslint-Rest-Boilerplate-dev',
+    db: 'mongodb://localhost/leadgrabr-dev',
     port: 3000
 }
