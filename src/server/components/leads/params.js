@@ -5,7 +5,7 @@ export default {
     createLead: {
         body: {
             name: Joi.string().required(),
-            phone: Joi.string().regex(/^[1-9][0-9]{9}$/),
+            phone: Joi.string().required(),
             email: Joi.string().email().required()
         }
     },

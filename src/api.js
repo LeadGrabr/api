@@ -6,7 +6,7 @@ import app from './config/express'
 // promisify mongoose
 Promise.promisifyAll(mongoose)
 
-const debug = require('debug')('Babel-Express-Mongoose-Eslint-Rest-Boilerplate:index')
+const debug = require('debug')('LeadGrabr:index')
 
 // connect to mongo db
 
