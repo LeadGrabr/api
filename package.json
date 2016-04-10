@@ -31,13 +31,18 @@
       "command": "nodemon --exec 'npm run lint && npm run build && node --debug ./build/index.js'",
       "env": {
         "NODE_ENV": "development",
+        "MONGO_HOST": "localhost",
+        "MONGO_DBNAME": "leadgrabr-dev",
         "PORT": 3000
       }
     },
     "start-dev": {
       "command": "nodemon --exec 'npm run lint && babel-node ./src/index.js'",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "development",
+        "MONGO_HOST": "localhost",
+        "MONGO_DBNAME": "leadgrabr-dev",
+        "PORT": 3000
       }
     }
   },
