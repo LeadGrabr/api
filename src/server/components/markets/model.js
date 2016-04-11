@@ -23,4 +23,4 @@ MarketSchema.statics = { get, list }
 /**
  * @typedef Market
  */
-export default mongoose.model('Lead', MarketSchema)
+export default mongoose.model('Market', MarketSchema)

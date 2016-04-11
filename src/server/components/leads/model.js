@@ -16,6 +16,9 @@ const LeadSchema = new mongoose.Schema({
     email: {
         type: String
     },
+    message: {
+        type: String
+    },
     createdAt: {
         type: Date,
         default: Date.now

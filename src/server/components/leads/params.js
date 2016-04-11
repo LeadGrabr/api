@@ -6,7 +6,8 @@ export default {
         body: {
             name: Joi.string().required(),
             phone: Joi.string().required(),
-            email: Joi.string().email().required()
+            email: Joi.string().email().required(),
+            message: Joi.string()
         }
     },
 
