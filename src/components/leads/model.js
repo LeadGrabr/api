@@ -4,6 +4,10 @@ import Joi from 'joi'
 import { phone } from 'helpers/customValidators'
 
 const joiSchema = Joi.object({
+    _audience: Joi.string().meta({
+        type: Schema.Types.ObjectId,
+        ref: 'Audience'
+    }).required(),
     name: Joi.string().required(),
     email: Joi.string().email(),
     message: Joi.string(),
