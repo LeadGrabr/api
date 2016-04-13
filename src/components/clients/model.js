@@ -6,7 +6,7 @@ import { phone } from 'helpers/customValidators'
 const joiSchema = Joi.object({
     name: Joi.string().required(),
     contact: Joi.object({
-        email: Joi.string().required(),
+        email: Joi.string().email().required(),
         phone
     }),
     createdAt: Joi.date().default(Date.now, 'time of creation').required()
