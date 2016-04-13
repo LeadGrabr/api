@@ -1,9 +1,7 @@
-import { Schema, model, default as mongoose } from 'config/mongoose'
+import { Schema, model, joigoose } from 'config/mongoose'
 import { get, list } from 'helpers/crud'
 import Joi from 'joi'
 import { phone } from 'helpers/customValidators'
-
-const joigoose = require('joigoose')(mongoose)
 
 const joiSchema = Joi.object({
     name: Joi.string().required(),
@@ -18,12 +16,6 @@ const joiSchema = Joi.object({
 })
 
 const schema = new Schema(joigoose.convert(joiSchema))
-/**
- * Statics
- */
 schema.statics = { get, list }
 
-/**
- * @typedef User
- */
 export default model('Lead', schema)

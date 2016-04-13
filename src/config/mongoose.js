@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import config from 'config/config'
+import joigooseLib from 'joigoose'
 
 export function setup() {
     mongoose.connection.on('connecting', () => {
@@ -18,4 +19,4 @@ export function setup() {
 
 export const Schema = mongoose.Schema
 export const model = mongoose.model.bind(mongoose)
-export default mongoose
+export const joigoose = joigooseLib(mongoose)
