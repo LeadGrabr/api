@@ -1,5 +1,5 @@
 import { Schema, model, joigoose } from 'config/mongoose'
-import { get, list } from 'helpers/crud'
+import { setup } from 'helpers/crud'
 import Joi from 'joi'
 
 const joiSchema = Joi.object({
@@ -9,11 +9,6 @@ const joiSchema = Joi.object({
     createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })
 
-const schema = new Schema(joigoose.convert(joiSchema))
-schema.statics = { get, list }
-schema.post('save', (doc) => {
-    console.log('saved: ', doc)
-    console.log('this: ', this)
-})
+const schema = setup(new Schema(joigoose.convert(joiSchema)))
 
 export default model('Market', schema)

@@ -1,5 +1,5 @@
 import { Schema, model, joigoose } from 'config/mongoose'
-import { get, list } from 'helpers/crud'
+import { setup } from 'helpers/crud'
 import Joi from 'joi'
 import { phone } from 'helpers/customValidators'
 
@@ -15,6 +15,6 @@ const joiSchema = Joi.object({
     createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })
 
-const schema = new Schema(joigoose.convert(joiSchema))
-schema.statics = { get, list }
+const schema = setup(new Schema(joigoose.convert(joiSchema)))
+
 export default model('Client', schema)
