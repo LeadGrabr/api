@@ -1,0 +1,7 @@
+export { default as Audience } from './audiences/model'
+export { default as Client } from './clients/model'
+export { default as Communication } from './communications/model'
+export { default as Lead } from './leads/model'
+export { default as Market } from './markets/model'
+export { default as Service } from './services/model'
+export { default as Subscription } from './subscriptions/model'

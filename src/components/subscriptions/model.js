@@ -1,4 +1,4 @@
-import { Schema, model } from 'helpers/mongoose'
+import { Schema, model } from 'config/mongoose'
 import { get, list } from 'helpers/crud'
 import { leadTypes, deliveryMethods } from 'helpers/constants'
 import _ from 'lodash'

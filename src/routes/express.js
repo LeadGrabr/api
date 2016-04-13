@@ -8,7 +8,7 @@ import cors from 'cors'
 import httpStatus from 'http-status'
 import expressWinston from 'express-winston'
 import expressValidation from 'express-validation'
-import winstonInstance from './winston'
+import winstonInstance from 'config/winston'
 import routes from 'routes'
 import config from 'config/config'
 import APIError from 'helpers/APIError'
@@ -45,8 +45,8 @@ if (config.env === 'development') {
     }))
 }
 
-// mount all routes on /api path
-app.use('/api', routes)
+// mount all routes
+app.use(routes)
 
 // if error is not an instanceOf APIError, convert it.
 app.use((err, req, res, next) => {
