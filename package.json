@@ -24,7 +24,8 @@
     "start-prod": {
       "command": "node ./build/index.js",
       "env": {
-        "NODE_ENV": "production"
+        "NODE_ENV": "production",
+        "NODE_PATH": "build"
       }
     },
     "start-debug": {
@@ -33,6 +34,7 @@
         "NODE_ENV": "development",
         "MONGO_HOST": "localhost",
         "MONGO_DBNAME": "leadgrabr-dev",
+        "NODE_PATH": "src",
         "PORT": 3000
       }
     },
@@ -42,6 +44,7 @@
         "NODE_ENV": "development",
         "MONGO_HOST": "localhost",
         "MONGO_DBNAME": "leadgrabr-dev",
+        "NODE_PATH": "src",
         "PORT": 3000
       }
     }

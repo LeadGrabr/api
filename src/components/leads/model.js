@@ -1,10 +1,10 @@
-import mongoose from 'mongoose'
-import { get, list } from '../../helpers/crud'
+import { Schema, model } from 'helpers/mongoose'
+import { get, list } from 'helpers/crud'
 
 /**
  * Lead Schema
  */
-const LeadSchema = new mongoose.Schema({
+const schema = new Schema({
     name: {
         type: String,
         required: true
@@ -19,6 +19,10 @@ const LeadSchema = new mongoose.Schema({
     message: {
         type: String
     },
+    deliveredTo: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Communication'
+    }],
     createdAt: {
         type: Date,
         default: Date.now
@@ -28,9 +32,9 @@ const LeadSchema = new mongoose.Schema({
 /**
  * Statics
  */
-LeadSchema.statics = { get, list }
+schema.statics = { get, list }
 
 /**
  * @typedef User
  */
-export default mongoose.model('Lead', LeadSchema)
+export default model('Lead', schema)
