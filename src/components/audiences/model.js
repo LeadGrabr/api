@@ -1,48 +1,32 @@
-import { Schema, model } from 'config/mongoose'
+import { Schema, model, joigoose } from 'config/mongoose'
 import { get, list } from 'helpers/crud'
 import { leadTypes } from 'helpers/constants'
+import Joi from 'joi'
 import _ from 'lodash'
 
-/**
- * Lead Schema
- */
-const schema = new Schema({
-    _service: {
+const joiSchema = Joi.object({
+    _service: Joi.string().meta({
         type: Schema.Types.ObjectId,
-        ref: 'Service',
-        required: true
-    },
-    _market: {
+        ref: 'Service'
+    }).required(),
+    _market: Joi.string().meta({
         type: Schema.Types.ObjectId,
-        ref: 'Market',
-        required: true
-    },
-    name: {
-        type: String,
-        required: true
-    },
-    qualifiedDomain: {
-        type: String
-    },
-    emailDomain: {
-        type: String
-    },
-    leadTypes: [{
-        type: String,
-        enum: _.values(leadTypes)
-    }],
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+        ref: 'Market'
+    }).required(),
+    name: Joi.string().required(),
+    url: Joi.string(),
+    emailSettings: Joi.object({
+        from: Joi.string().required(),
+        fromName: Joi.string().required(),
+        domain: Joi.string().required()
+    }),
+    leadTypes: Joi.array().items(
+        Joi.string().valid(_.values(leadTypes))
+    ),
+    createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })
 
-/**
- * Statics
- */
+const schema = new Schema(joigoose.convert(joiSchema))
 schema.statics = { get, list }
 
-/**
- * @typedef Market
- */
 export default model('Audience', schema)
