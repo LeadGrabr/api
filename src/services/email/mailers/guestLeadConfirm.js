@@ -13,6 +13,6 @@ export default class GuestLeadConfirm extends BaseMailer {
         if (!lead.email) {
             return done()
         }
-        return super(lead, lead.audience, lead.email, this.formatSubject(lead), done)
+        return super.send(lead, lead.audience, lead.email, this.formatSubject(lead), done)
     }
 }

@@ -14,6 +14,7 @@
         "id-length": [2, { "min": 2, "max": 30, "exceptions": ["_", "$"]}],
         "no-param-reassign": [2, {"props": false}],
     },
+    "parser": "babel-eslint",
     "env": {
         "node": true,
         "mocha": true

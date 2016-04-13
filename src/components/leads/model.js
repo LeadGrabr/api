@@ -22,13 +22,12 @@ const joiSchema = Joi.object({
 })
 
 const schema = setup(new Schema(joigoose.convert(joiSchema)))
-schema.post('save', (lead) => {
+schema.post('save', async (lead) => {
     if (!lead.wasNew) {
         return
     }
     const mailer = new Mailer(lead)
-    mailer.sendNotifications((loadedLead) => {
-        console.log('loadedLead: ', loadedLead, loadedLead.audience)
-    })
+    const result = await mailer.sendNotifications()
+    console.log(result)
 })
 export default model('Lead', schema)

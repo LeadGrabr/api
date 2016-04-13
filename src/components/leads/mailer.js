@@ -1,17 +1,26 @@
 // import { ClientLeadMailer, GuestLeadMailer } from 'services'
-import Lead from './model'
+import { default as Lead } from './model'
 
 export default class Mailer {
     constructor(lead) {
         this.lead = lead
     }
 
-    sendNotifications(done) {
-        console.log('looking for: ', this.lead._id)
-        Lead.findById(this.lead._id)
+    populateLead() {
+        return Lead.findById(this.lead._id)
             .populate({
                 path: '_audience',
                 model: 'Audience'
-            }).then(done)
+            })
+    }
+
+    async sendNotifications() {
+        try {
+            return {
+                lead: await this.populateLead()
+            }
+        } catch (err) {
+            return { err }
+        }
     }
 }

@@ -1,2 +1,2 @@
-import model from './model'
+import { default as model } from './model'
 export default (restify, router) => restify.serve(router, model)
