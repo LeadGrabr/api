@@ -6,7 +6,8 @@ import { phone } from 'helpers/customValidators'
 const joiSchema = Joi.object({
     _audience: Joi.string().meta({
         type: Schema.Types.ObjectId,
-        ref: 'Audience'
+        ref: 'Audience',
+        index: true
     }).required(),
     name: Joi.string().required(),
     email: Joi.string().email(),
@@ -22,4 +23,8 @@ const joiSchema = Joi.object({
 const schema = new Schema(joigoose.convert(joiSchema))
 schema.statics = { get, list }
 
+schema.post('save', (doc) => {
+    console.log('saved: ', doc)
+    console.log('this: ', this)
+})
 export default model('Lead', schema)

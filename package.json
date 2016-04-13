@@ -32,8 +32,9 @@
       "command": "nodemon --exec 'npm run lint && npm run build && node --debug ./build/index.js'",
       "env": {
         "NODE_ENV": "development",
-        "MONGO_HOST": "localhost",
+        "MONGO_HOST": "ec2-54-84-242-122.compute-1.amazonaws.com",
         "MONGO_DBNAME": "leadgrabr-dev",
+        "MONGO_USER": "leadgrabr-dev",
         "NODE_PATH": "src",
         "PORT": 3000
       }
@@ -42,8 +43,9 @@
       "command": "nodemon --exec 'npm run lint && babel-node ./src/index.js'",
       "env": {
         "NODE_ENV": "development",
-        "MONGO_HOST": "localhost",
+        "MONGO_HOST": "ec2-54-84-242-122.compute-1.amazonaws.com",
         "MONGO_DBNAME": "leadgrabr-dev",
+        "MONGO_USER": "leadgrabr-dev",
         "NODE_PATH": "src",
         "PORT": 3000
       }
@@ -53,7 +55,7 @@
     "type": "git",
     "url": "git@github.com:LeadGrabr/api.git"
   },
-  "keywords": [ ],
+  "keywords": [],
   "dependencies": {
     "babel-runtime": "^6.3.19",
     "better-npm-run": "0.0.8",
@@ -64,17 +66,20 @@
     "cookie-parser": "^1.4.1",
     "cors": "^2.7.1",
     "debug": "^2.2.0",
+    "email-templates": "^2.3.0",
     "express": "^4.13.4",
     "express-restify-mongoose": "^4.0.1",
     "express-validation": "^0.6.0",
     "express-winston": "^1.3.0",
     "http-status": "^0.2.1",
+    "jade": "^1.11.0",
     "joi": "^8.0.5",
     "lg-joigoose": "0.0.1",
     "lodash": "^4.10.0",
     "method-override": "^2.3.5",
     "mongoose": "^4.4.12",
     "morgan": "^1.7.0",
+    "sendgrid": "^2.0.0",
     "strict-mode": "^0.5.0",
     "winston": "^2.2.0"
   },

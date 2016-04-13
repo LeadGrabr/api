@@ -23,5 +23,6 @@ const joiSchema = Joi.object({
 
 const schema = new Schema(joigoose.convert(joiSchema))
 schema.statics = { get, list }
+schema.index({ _client: 1, _audience: 1, leadType: 1 }, { unique: true })
 
 export default model('Subscription', schema)

@@ -1,11 +1,6 @@
-import Promise from 'bluebird'
-import mongoose from 'mongoose'
 import config from 'config/config'
 import app from 'routes/express'
 import { setup as setupMongoose } from 'config/mongoose'
-
-// promisify mongoose
-Promise.promisifyAll(mongoose)
 
 const debug = require('debug')('LeadGrabr:index')
 

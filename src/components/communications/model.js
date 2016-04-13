@@ -21,5 +21,5 @@ const joiSchema = Joi.object({
 
 const schema = new Schema(joigoose.convert(joiSchema))
 schema.statics = { get, list }
-
+schema.index({ _lead: 1, _subscription: 1 }, { unique: true })
 export default model('Communication', schema)
