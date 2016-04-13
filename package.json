@@ -1,10 +1,10 @@
 {
-  "name": "express-mongoose-es6-rest-api",
+  "name": "leadgrabr-api",
   "version": "1.0.0",
-  "description": "A Boilerplate application for building REST APIs using express, mongoose in ES6 with code coverage",
-  "author": "Kunal Kapadia <kunalkapadia12@gmail.com>",
+  "description": "API for leadgrabr",
+  "author": "Kareem Janoudi <kareem.janoudi@leadgrabr.com>",
   "main": "index.js",
-  "private": false,
+  "private": true,
   "engines": {
     "node": "5.10.1",
     "npm": "3.3.x"
@@ -51,21 +51,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:KunalKapadia/express-mongoose-es6-rest-api.git"
+    "url": "git@github.com:LeadGrabr/api.git"
   },
-  "keywords": [
-    "express",
-    "node",
-    "node.js",
-    "mongodb",
-    "mongoose",
-    "es6",
-    "mocha",
-    "istanbul",
-    "REST",
-    "API",
-    "boilerplate"
-  ],
+  "keywords": [ ],
   "dependencies": {
     "better-npm-run": "0.0.8",
     "bluebird": "^3.3.5",
@@ -118,7 +106,6 @@
     "run-sequence": "^1.1.5",
     "validate-commit-msg": "^2.5.0"
   },
-  "license": "MIT",
   "config": {
     "ghooks": {
       "pre-commit": "npm run lint",
