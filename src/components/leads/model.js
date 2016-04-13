@@ -18,7 +18,6 @@ const joiSchema = Joi.object({
 })
 
 const schema = new Schema(joigoose.convert(joiSchema))
-console.log('schema: ', schema.paths.phone.validators[0].validator)
 /**
  * Statics
  */
