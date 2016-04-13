@@ -18,3 +18,4 @@ export function setup() {
 
 export const Schema = mongoose.Schema
 export const model = mongoose.model.bind(mongoose)
+export default mongoose

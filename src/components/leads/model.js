@@ -1,34 +1,23 @@
-import { Schema, model } from 'config/mongoose'
+import { Schema, model, default as mongoose } from 'config/mongoose'
 import { get, list } from 'helpers/crud'
+import Joi from 'joi'
+import { phone } from 'helpers/customValidators'
 
-/**
- * Lead Schema
- */
-const schema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String
-    },
-    message: {
-        type: String
-    },
-    deliveredTo: [{
+const joigoose = require('joigoose')(mongoose)
+
+const joiSchema = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email(),
+    message: Joi.string(),
+    phone,
+    deliveredTo: Joi.array().items(Joi.string().meta({
         type: Schema.Types.ObjectId,
         ref: 'Communication'
-    }],
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+    })),
+    createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })
 
+const schema = new Schema(joigoose.convert(joiSchema))
 /**
  * Statics
  */
