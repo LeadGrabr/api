@@ -9,7 +9,8 @@ const joiSchema = Joi.object({
     }),
     contact: Joi.object({
         email: Joi.string().email().required(),
-        phone
+        phone,
+        website: Joi.string()
     }),
     createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })

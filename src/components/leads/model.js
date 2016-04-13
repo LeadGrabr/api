@@ -4,7 +4,7 @@ import Joi from 'joi'
 import { phone } from 'helpers/customValidators'
 
 const joiSchema = Joi.object({
-    _audience: Joi.string().meta({
+    _audience: Joi.any().meta({
         type: Schema.Types.ObjectId,
         ref: 'Audience',
         index: true
@@ -13,7 +13,7 @@ const joiSchema = Joi.object({
     email: Joi.string().email(),
     message: Joi.string(),
     phone,
-    deliveredTo: Joi.array().items(Joi.string().meta({
+    deliveredTo: Joi.array().items(Joi.any().meta({
         type: Schema.Types.ObjectId,
         ref: 'Communication'
     })),

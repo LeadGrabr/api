@@ -5,11 +5,11 @@ import Joi from 'joi'
 import _ from 'lodash'
 
 const joiSchema = Joi.object({
-    _lead: Joi.string().meta({
+    _lead: Joi.any().meta({
         type: Schema.Types.ObjectId,
         ref: 'Lead'
     }).required(),
-    _subscription: Joi.string().meta({
+    _subscription: Joi.any().meta({
         type: Schema.Types.ObjectId,
         ref: 'Subscription'
     }).required(),
