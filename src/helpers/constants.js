@@ -5,7 +5,7 @@ export const leadTypes = {
 }
 
 export const deliveryMethods = {
-    Phone: 'phone',
+    Call: 'call',
     Email: 'email',
     SMS: 'sms'
 }

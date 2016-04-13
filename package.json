@@ -128,7 +128,7 @@
       "path": "./node_modules/cz-conventional-changelog"
     },
     "validate-commit-msg": {
-      "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], 
+      "types": ["issue", "master", "revert"], 
       "warnOnFail": false, 
       "maxSubjectLength": 100,
       "subjectPattern": ".+",

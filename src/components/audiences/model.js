@@ -21,6 +21,12 @@ const schema = new Schema({
         type: String,
         required: true
     },
+    qualifiedDomain: {
+        type: String
+    },
+    emailDomain: {
+        type: String
+    },
     leadTypes: [{
         type: String,
         enum: _.values(leadTypes)
