@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import config from 'config/config'
-import joigooseLib from 'joigoose'
+import joigooseLib from 'lg-joigoose'
 
 export function setup() {
     mongoose.connection.on('connecting', () => {
