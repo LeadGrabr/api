@@ -9,7 +9,6 @@
         }
     }
 
-    require('./server.babel')
     require('./api')
 })()
 

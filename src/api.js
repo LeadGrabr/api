@@ -1,7 +1,8 @@
 import Promise from 'bluebird'
 import mongoose from 'mongoose'
 import config from 'config/config'
-import app from 'config/express'
+import app from 'routes/express'
+import { setup as setupMongoose } from 'config/mongoose'
 
 // promisify mongoose
 Promise.promisifyAll(mongoose)
@@ -9,19 +10,7 @@ Promise.promisifyAll(mongoose)
 const debug = require('debug')('LeadGrabr:index')
 
 // connect to mongo db
-
-mongoose.connection.on('connecting', () => {
-    console.log(`connecting to database: ${config.db}`)
-})
-mongoose.connection.on('connected', () => {
-    console.log(`connected to database: ${config.db}`)
-})
-
-mongoose.connect(config.db, { server: { socketOptions: { keepAlive: 1 } } })
-
-mongoose.connection.on('error', () => {
-    throw new Error(`unable to connect to database: ${config.db}`)
-})
+setupMongoose()
 
 // listen on port config.port
 app.listen(process.env.PORT, () => {

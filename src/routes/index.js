@@ -1,5 +1,5 @@
 import express from 'express'
-import leadsRoutes from '../components/leads/routes'
+import restify from './restify'
 
 const router = express.Router()    // eslint-disable-line new-cap
 
@@ -8,7 +8,6 @@ router.get('/health-check', (req, res) =>
     res.send('OK')
 )
 
-// mount user routes at /users
-router.use('/leads', leadsRoutes)
+restify(router)
 
 export default router
