@@ -1,6 +1,5 @@
 import restify from 'express-restify-mongoose'
-import { Lead } from 'components/models'
+import * as restfulModels from 'components/rest'
+import _ from 'lodash'
 
-export default function setup(router) {
-    restify.serve(router, Lead)
-}
+export default (router) => _.forOwn(restfulModels, (setup) => setup(restify, router))
