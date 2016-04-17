@@ -3,7 +3,6 @@ import { getTemplate, send } from './helpers'
 export default class GuestLeadConfirm {
     constructor(lead) {
         this.lead = lead
-        console.log('getTemplate: ', getTemplate, 'guestLeadConfirm')
         this.template = getTemplate('guestLeadConfirm')
     }
 
@@ -18,7 +17,6 @@ export default class GuestLeadConfirm {
             return null
         }
         const result = await send(template, lead, audience, email, formatSubject(audience))
-        console.log('sendResult: ', result)
         return result
     }
 }

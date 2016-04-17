@@ -5,7 +5,7 @@ import Joi from 'joi'
 import _ from 'lodash'
 
 const joiSchema = Joi.object({
-    _client: Joi.any().meta({
+    client: Joi.any().meta({
         type: Schema.Types.ObjectId,
         ref: 'Client'
     }).required(),
@@ -14,12 +14,12 @@ const joiSchema = Joi.object({
         ref: 'Audience'
     }).required(),
     subscriptionType: Joi.string().valid(_.values(subscriptionType)).required(),
-    deliveryEmail: Joi.string().email(),
+    deliveryEmail: Joi.string().email().required(),
     createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })
 
 const schema = setup(new Schema(joigoose.convert(joiSchema)))
 schema.index({ audience: 1, subscriptionType: 1 })
-schema.index({ _client: 1, audience: 1, subscriptionType: 1 }, { unique: true })
+schema.index({ client: 1, audience: 1, subscriptionType: 1 }, { unique: true })
 
 export default model('Subscription', schema)

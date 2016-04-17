@@ -3,11 +3,11 @@ import { setup } from 'helpers/crud'
 import Joi from 'joi'
 
 const joiSchema = Joi.object({
-    _lead: Joi.any().meta({
+    lead: Joi.any().meta({
         type: Schema.Types.ObjectId,
         ref: 'Lead'
     }).required(),
-    _subscription: Joi.any().meta({
+    subscription: Joi.any().meta({
         type: Schema.Types.ObjectId,
         ref: 'Subscription'
     }).required(),
@@ -17,6 +17,6 @@ const joiSchema = Joi.object({
 })
 
 const schema = setup(new Schema(joigoose.convert(joiSchema)))
-schema.index({ _lead: 1, _subscription: 1 }, { unique: true })
+schema.index({ lead: 1, subscription: 1 }, { unique: true })
 
 export default model('Communication', schema)

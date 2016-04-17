@@ -5,11 +5,11 @@ import Joi from 'joi'
 import _ from 'lodash'
 
 const joiSchema = Joi.object({
-    _service: Joi.any().meta({
+    service: Joi.any().meta({
         type: Schema.Types.ObjectId,
         ref: 'Service'
     }).required(),
-    _market: Joi.any().meta({
+    market: Joi.any().meta({
         type: Schema.Types.ObjectId,
         ref: 'Market'
     }).required(),
@@ -29,6 +29,6 @@ const joiSchema = Joi.object({
 })
 
 const schema = setup(new Schema(joigoose.convert(joiSchema)))
-schema.index({ _service: 1, _market: 1 }, { unique: true })
+schema.index({ service: 1, market: 1 }, { unique: true })
 
 export default model('Audience', schema)

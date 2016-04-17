@@ -8,7 +8,7 @@ export default class ClientLeadNotificationMailer {
         this.template = getTemplate('clientLeadNotification')
     }
 
-    formatSubject({ audience: { name } }) {
+    formatSubject({ name }) {
         return `A fresh new lead from ${name}`
     }
 
@@ -31,7 +31,7 @@ export default class ClientLeadNotificationMailer {
                 return null
             }
             console.log('building for: ', email)
-            return send(template, lead, audience, email, formatSubject())
+            return send(template, lead, audience, email, formatSubject(audience))
         })
         console.log('results: ', results)
         try {
