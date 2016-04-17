@@ -8,7 +8,6 @@ import path from 'path'
 import fs from 'fs'
 
 export function getTemplate(templateName) {
-    console.log('getTemplate: ', templateName)
     const templatePath = path.join(__dirname, '../', 'templates', templateName)
     return new EmailTemplate(templatePath)
 }
@@ -16,7 +15,6 @@ export function getTemplate(templateName) {
 export async function send(template, data, audience, to, subject) {
     try {
         const result = await template.render(data)
-        console.log('result of render: ', result)
         if (__DEVELOPMENT__) {
             fs.writeFileSync(
                 `${__dirname}/.temp/${sanitize(`test-${subject}-${to}.html`)}`, result.html)
@@ -30,7 +28,6 @@ export async function send(template, data, audience, to, subject) {
             html: result.html
         }
         const email = await sendEmail(new sendgrid.Email(params))
-        console.log('email sent: ', email)
         return { email }
     } catch (err) {
         return { err }

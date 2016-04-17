@@ -4,7 +4,6 @@ import config from 'config/config'
 import app from 'routes/express'
 import { setup as setupMongoose } from 'config/mongoose'
 
-console.log('here we are in the api')
 const debug = require('debug')('LeadGrabr:index')
 
 // connect to mongo db
