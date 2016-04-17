@@ -1,16 +1,45 @@
-import BaseMailer from './base'
+import Promise from 'bluebird'
+import { getTemplate, send } from './helpers'
 
-export default class ClientLeadNotificationMailer extends BaseMailer {
-    constructor() {
-        super('clientLeadNotification')
+export default class ClientLeadNotificationMailer {
+    constructor(lead) {
+        this.lead = lead
+        console.log('getTemplate: ', getTemplate, 'clientLeadNotification')
+        this.template = getTemplate('clientLeadNotification')
     }
 
-    formatSubject(lead) {
-        return `A fresh new lead from ${lead.audience.name}`
+    formatSubject({ audience: { name } }) {
+        return `A fresh new lead from ${name}`
     }
 
-    send(lead, subscribers, done) {
+    getToEmails({ subscribers }) {
+        console.log('subscribers: ', subscribers)
+        return subscribers.map((sub) => sub.deliveryEmail)
+    }
+
+    async send() {
         // loop through the subscribers and send these leads out
-        console.log(lead, subscribers, done)
+        const { lead, template, formatSubject, getToEmails } = this
+        const { audience } = lead
+        const emails = getToEmails(lead)
+        if (!emails || !audience) {
+            return null
+        }
+        console.log('emails: ', emails)
+        const results = emails.map((email) => {
+            if (!email) {
+                return null
+            }
+            console.log('building for: ', email)
+            return send(template, lead, audience, email, formatSubject())
+        })
+        console.log('results: ', results)
+        try {
+            const allResults = await Promise.all(results)
+            console.log('results: ', allResults)
+            return allResults
+        } catch (err) {
+            return { err }
+        }
     }
 }

@@ -1,8 +1,6 @@
 import { Schema, model, joigoose } from 'config/mongoose'
 import { setup } from 'helpers/crud'
-import { leadTypes } from 'helpers/constants'
 import Joi from 'joi'
-import _ from 'lodash'
 
 const joiSchema = Joi.object({
     _lead: Joi.any().meta({
@@ -15,7 +13,6 @@ const joiSchema = Joi.object({
     }).required(),
     deliveredAt: Joi.date(),
     deliveredTo: Joi.string(),
-    leadType: Joi.string().valid(_.values(leadTypes)).required(),
     createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })
 

@@ -1,6 +1,6 @@
 import { Schema, model, joigoose } from 'config/mongoose'
 import { setup } from 'helpers/crud'
-import { leadTypes } from 'helpers/constants'
+import { leadSource } from 'helpers/constants'
 import Joi from 'joi'
 import _ from 'lodash'
 
@@ -22,8 +22,8 @@ const joiSchema = Joi.object({
         fromName: Joi.string().required(),
         domain: Joi.string().required()
     }),
-    leadTypes: Joi.array().items(
-        Joi.string().valid(_.values(leadTypes))
+    availableLeadSources: Joi.array().items(
+        Joi.string().valid(_.values(leadSource))
     ),
     createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })

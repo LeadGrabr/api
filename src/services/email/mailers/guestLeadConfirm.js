@@ -1,18 +1,24 @@
-import BaseMailer from './base'
+import { getTemplate, send } from './helpers'
 
-export default class GuestLeadConfirm extends BaseMailer {
-    constructor() {
-        super('guestLeadConfirm')
+export default class GuestLeadConfirm {
+    constructor(lead) {
+        this.lead = lead
+        console.log('getTemplate: ', getTemplate, 'guestLeadConfirm')
+        this.template = getTemplate('guestLeadConfirm')
     }
 
-    formatSubject(lead) {
-        return `${lead.audience.name} is trying to reach you`
+    formatSubject({ name }) {
+        return `${name} is trying to reach you`
     }
 
-    send(lead, done) {
-        if (!lead.email) {
-            return done()
+    async send() {
+        const { lead, template, formatSubject } = this
+        const { audience, email } = lead
+        if (!email) {
+            return null
         }
-        return super.send(lead, lead.audience, lead.email, this.formatSubject(lead), done)
+        const result = await send(template, lead, audience, email, formatSubject(audience))
+        console.log('sendResult: ', result)
+        return result
     }
 }
