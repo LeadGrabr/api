@@ -1,11 +1,10 @@
-export const leadTypes = {
+export const leadSource = {
     Phone: 'phone',
-    Email: 'email',
-    SMS: 'sms'
+    Website: 'website'
 }
 
-export const deliveryMethods = {
-    Call: 'call',
+export const subscriptionType = {
+    Phone: 'phone',
     Email: 'email',
     SMS: 'sms'
 }

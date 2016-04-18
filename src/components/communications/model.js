@@ -1,25 +1,22 @@
 import { Schema, model, joigoose } from 'config/mongoose'
-import { get, list } from 'helpers/crud'
-import { leadTypes } from 'helpers/constants'
+import { setup } from 'helpers/crud'
 import Joi from 'joi'
-import _ from 'lodash'
 
 const joiSchema = Joi.object({
-    _lead: Joi.string().meta({
+    lead: Joi.any().meta({
         type: Schema.Types.ObjectId,
         ref: 'Lead'
     }).required(),
-    _subscription: Joi.string().meta({
+    subscription: Joi.any().meta({
         type: Schema.Types.ObjectId,
         ref: 'Subscription'
     }).required(),
     deliveredAt: Joi.date(),
     deliveredTo: Joi.string(),
-    leadType: Joi.string().valid(_.values(leadTypes)).required(),
     createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })
 
-const schema = new Schema(joigoose.convert(joiSchema))
-schema.statics = { get, list }
+const schema = setup(new Schema(joigoose.convert(joiSchema)))
+schema.index({ lead: 1, subscription: 1 }, { unique: true })
 
 export default model('Communication', schema)

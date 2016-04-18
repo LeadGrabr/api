@@ -1,8 +1,12 @@
+import Promise from 'bluebird'
 import mongoose from 'mongoose'
 import config from 'config/config'
 import joigooseLib from 'lg-joigoose'
 
 export function setup() {
+    // promisify mongoose
+    Promise.promisifyAll(mongoose)
+
     mongoose.connection.on('connecting', () => {
         console.log(`connecting to database: ${config.db}`)
     })

@@ -2,7 +2,7 @@ import httpStatus from 'http-status'
 import APIError from './APIError'
 import Promise from 'bluebird'
 
-export function get(id) {
+function get(id) {
     return this.findById(id)
         .execAsync().then((item) => {
             if (item) {
@@ -13,7 +13,7 @@ export function get(id) {
         })
 }
 
-export function list({ skip = 0, limit = 50 } = {}) {
+function list({ skip = 0, limit = 50 } = {}) {
     return this.find()
         .sort({ createdAt: -1 })
         .skip(skip)
@@ -21,3 +21,11 @@ export function list({ skip = 0, limit = 50 } = {}) {
         .execAsync()
 }
 
+export function setup(schema) {
+    schema.statics = { get, list }
+    schema.pre('save', function cb(next) {
+        this.wasNew = this.isNew
+        next()
+    })
+    return schema
+}
