@@ -15,8 +15,8 @@
     .ExternalClass p
     {
         line-height:inherit;
-        Margin-top:0!important;
-        Margin-bottom:0!important
+        margin-top:0!important;
+        margin-bottom:0!important
     }
     .ecximg,.ecximage,.ecxlogo,.ecximage-border
     {
@@ -38,6 +38,12 @@
         margin:0;
         padding:0;
         -webkit-font-smoothing:antialiased
+    }
+    a {
+        text-decoration: none !important;
+    }
+    a:-webkit-any-link {
+        text-decoration: none !important;
     }
     .yshortcuts a
     {

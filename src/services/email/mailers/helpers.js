@@ -18,7 +18,7 @@ export function getTemplate(templateName) {
     })
 }
 
-export async function send({ template, groupId, data, emailSettings, to, subject }) {
+export async function send({ template, sendgridGroupId, data, emailSettings, to, subject }) {
     try {
         const result = await template.render(data)
         console.log('result of render: ', result)
@@ -34,7 +34,7 @@ export async function send({ template, groupId, data, emailSettings, to, subject
             html: result.html
         }
         const sendgridEmail = new sendgrid.Email(params)
-        sendgridEmail.setASMGroupID(groupId)
+        sendgridEmail.setASMGroupID(sendgridGroupId)
         const email = await sendEmail(sendgridEmail)
         console.log('email sent: ', email)
         return { email }
