@@ -1,26 +1,126 @@
-extends ../shared/layout/layout.jade
-
-block title
-  | Welcome Guest
-block teaser
-  | Thank you Guest! We will be in touch shortly.
-
-block content
+doctype transitional
+head
+  meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+  meta(name='viewport', content='width=device-width, maximum-scale=1')
+  title Atlantis mail
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,cyrillic', rel='stylesheet', type='text/css')
+  //if gte mso 9
+    style(type='text/css').
+      body, table, tr, td, p, span, a, h1, h2, h3, h4, h5, h6, ul, li, ol, dl, dd, dt {         font-family: Helvetica, Arial, sans-serif !important;     }     .h1 { line-height: 90% !important; }
+  //if gte mso 9
+    xml
+      o:officedocumentsettings
+        o:allowpng
+          o:pixelsperinch 96
+table(width='100%', align='center', cellpadding='0', cellspacing='0', border='0', style='background-color: #f8fdff; width: 100%;')
   tr
-    td.highlight.pdTp32(style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 0;padding-top: 32px;padding-bottom: 0;padding-left: 16px;padding-right: 16px;border-collapse: collapse;border-spacing: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;width: 512px;text-align: center;background-color: #fafafa;border-bottom: 1px solid #ebebeb;')
-      h1(style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 5px;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;font-size: 24px;line-height: 36px;font-weight: bold;color: #242424;')
-        span(style='color: #242424;') Thank you!
-      table.profilePicture(border='0', align='center', cellpadding='0', cellspacing='0', style='margin-top: 0;margin-left: auto;margin-right: auto;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0;text-align: center;width: 64px;height: 64px;')
+    td.table-wrap
+      table.main-table(width='802', align='center', cellpadding='0', cellspacing='0', border='0', style='margin: 0 auto; width: 802px; min-width: 802px;')
+        // Spacer
         tr
-          td(style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 0;padding-top: 10px;padding-bottom: 6px;padding-left: 0;padding-right: 0;border-collapse: collapse;border-spacing: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;')
-            img(src='https://s3.amazonaws.com/costimize-email-images/images/user_icon.png', width='64', height='64', alt='Your Profile Picture', style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;height: auto;width: auto;line-height: 100%;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;')
-      p.profileName(style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 24px;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;font-size: 14px;line-height: 22px;color: #898989;')
-        span(style='font-weight: bold;color: #666666;') #{fullName}
-        br
-        |               #{confirmDate}
-    // end .highlight
-  tr
-    td.eBody.alignCenter.pdTp32(style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 0;padding-top: 32px;padding-bottom: 0;padding-left: 16px;padding-right: 16px;border-collapse: collapse;border-spacing: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;text-align: center;width: 512px;color: #242424;background-color: #ffffff;')
-      p(style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 24px;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;text-align: center;font-size: 14px;line-height: 22px;')
-        |             Thank you for confirming your interest. One of our representatives will be in contact with you soon.
-    
+          td.spacer(height='30', style='font-size: 1px; line-height: 30px;')
+        // End Spacer
+        tr
+          td(style='border: 1px solid #e8e8e8;')
+            table(width='100%', align='center', cellpadding='0', cellspacing='0', border='0')
+              tr
+                td.layouts-here
+                  // Layout 2 (Image - left, text - right)
+                  table(width='100%', align='center', cellpadding='0', cellspacing='0', border='0')
+                    tr
+                      td(style='background-color: #f9f9f9;')
+                        table(width='100%', align='center', cellpadding='0', cellspacing='0', border='0')
+                          tr
+                            td
+                              table.m-w100.col-50(width='400', align='left', cellpadding='0', cellspacing='0', border='0', style='border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 400px;')
+                                tr
+                                  td.bg-left(background='https://s3.amazonaws.com/leadgrabr-email-templates/images/left-img-pattern.png', style='background-repeat: no-repeat repeat; padding-left: 110px; background-color: #f9f9f9; background-image: url(https://s3.amazonaws.com/leadgrabr-email-templates/images/left-img-pattern.png);')
+                                    table(width='100%', align='right', cellpadding='0', cellspacing='0', border='0')
+                                      tr
+                                        td.spacer(height='60', style='font-size: 1px; line-height: 60px;')
+                                      tr
+                                        td
+                                          // image content
+                                          table.container-small(width='280', align='left', cellpadding='0', cellspacing='0', border='0')
+                                            tr
+                                              td.image(style='border-collapse: collapse; font-size: 0; text-align: center; background-color: #ffffff; padding: 20px; border: 1px solid #ececec;')
+                                                img(width='240', src='#{audience.templateResources.images.small}', alt='', style='border: none;')
+                                          // end image content
+                                      tr
+                                        td.spacer(height='60', style='font-size: 1px; line-height: 60px;')
+                              // spacer
+                              table.m-w100(width='20', align='left', cellpadding='0', cellspacing='0', border='0', style='border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 20px;')
+                                tr
+                                  td.spacer(height='1', style='font-size: 1px; line-height: 1px;')
+                              // end spacer
+                              // text content
+                              table.m-w100(width='260', align='left', cellpadding='0', cellspacing='0', border='0', style='border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 260px;')
+                                tr
+                                  td
+                                    table.container(width='100%', align='center', cellpadding='0', cellspacing='0', border='0', style='margin: 0 auto;')
+                                      tr
+                                        td.h50(height='75', style='font-size: 1px; line-height: 75px;')
+                                      tr
+                                        td.h2(style="font-family: 'Open Sans', Arial, sans-serif; line-height: 1.1; font-size: 30px; color: #333333;")
+                                          span(style='font-size: 50px;')
+                                            span(style='color: #fd590a;') Thank
+                                            |  You
+                                      tr
+                                        td.spacer(height='30', style='font-size: 1px; line-height: 30px;')
+                                      tr
+                                        td.text(style="color: #747474; font-family: 'Open Sans', Arial, sans-serif; font-size: 14px; line-height: 24px;")
+                                          span(style='font-size: 22px;')
+                                            | Thank you for getting in touch with #{audience.name}! We're reviewing your details and will be in touch as soon as possible. In most cases, you will hear back the same day!
+                                          br
+                                      tr
+                                        td.spacer(height='34', style='font-size: 1px; line-height: 34px;')
+                                      tr
+                                        td
+                                      tr
+                                        td.spacer(height='50', style='font-size: 1px; line-height: 50px;')
+                                    // end text content
+                  // End Layout 2 (Image - left, text - right)
+                  // Pattern 4
+                  table(width='100%', align='center', cellpadding='0', cellspacing='0', border='0')
+                    tr
+                      td(style='background-color: #ffffff;')
+                        table(width='100%', align='center', cellpadding='0', cellspacing='0', border='0')
+                          tr
+                            // image
+                            td.image(style='border-collapse: collapse; font-size: 0; text-align: center;')
+                              img(width='800', src='https://s3.amazonaws.com/leadgrabr-email-templates/images/pattern-img5.jpg', alt='', style='border: none;')
+                            // end image
+                  // End Pattern 4
+              tr
+                td
+                  // Footer
+                  table.footer(width='100%', align='center', cellpadding='0', cellspacing='0', border='0')
+                    tr
+                      td(style='background-color: #f9f9f9;')
+                        table.container(align='center', width='580', cellpadding='0', cellspacing='0', border='0', style='margin: 0 auto; width: 580px;')
+                          // Spacer
+                          tr
+                            td.spacer(height='20', style='font-size: 1px; line-height: 20px;')
+                          // End Spacer
+                          tr
+                            td(height='50', style='height: 50px;')
+                              table(width='100%', align='center', cellpadding='0', cellspacing='0', border='0')
+                                tr
+                                  td
+                                    // Copyright
+                                    table.m-w100(align='left', width='270', cellspacing='0', cellpadding='0', border='0', style='border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 250px;')
+                                      tr
+                                        td.text(style="color: #747474; font-family: 'Open Sans', Arial, sans-serif; font-size: 14px; line-height: 24px;")
+                                          | Copyright © 2016 #{audience.name}
+                                    // Unsubscribe
+                                    table.m-w100(align='right', width='270', cellspacing='0', cellpadding='0', border='0', style='border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 250px;')
+                                      tr
+                                        td.text(style="color: #747474; font-family: 'Open Sans', Arial, sans-serif; font-size: 14px; line-height: 24px; text-align: right;")
+                                          span(style='text-decoration: none; color: #747474;') <%asm_group_unsubscribe_url%>
+                                          |  |
+                                          a(href='#{audience.url}', style='text-decoration: none; color: #747474;') &nbsp; our website
+                          // Spacer
+                          tr
+                            td.spacer(height='20', style='font-size: 1px; line-height: 20px;')
+                          // End Spacer
+                  // End Footer

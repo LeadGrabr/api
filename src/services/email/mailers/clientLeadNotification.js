@@ -25,13 +25,21 @@ export default class ClientLeadNotificationMailer {
         if (!emails || !audience) {
             return null
         }
+        const { sendgridGroupId, emailSettings } = audience
         console.log('emails: ', emails)
         const results = emails.map((email) => {
             if (!email) {
                 return null
             }
             console.log('building for: ', email)
-            return send(template, lead, audience, email, formatSubject(audience))
+            return send({
+                template,
+                data: lead,
+                emailSettings,
+                to: email,
+                sendgridGroupId,
+                subject: formatSubject(audience)
+            })
         })
         console.log('results: ', results)
         try {

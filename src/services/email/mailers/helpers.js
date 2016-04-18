@@ -10,10 +10,15 @@ import fs from 'fs'
 export function getTemplate(templateName) {
     console.log('getTemplate: ', templateName)
     const templatePath = path.join(__dirname, '../', 'templates', templateName)
-    return new EmailTemplate(templatePath)
+    return new EmailTemplate(templatePath, {
+        juiceOptions: {
+            preserveMediaQueries: true,
+            removeStyleTags: false
+        }
+    })
 }
 
-export async function send(template, data, audience, to, subject) {
+export async function send({ template, groupId, data, emailSettings, to, subject }) {
     try {
         const result = await template.render(data)
         console.log('result of render: ', result)
@@ -21,7 +26,6 @@ export async function send(template, data, audience, to, subject) {
             fs.writeFileSync(
                 `${__dirname}/.temp/${sanitize(`test-${subject}-${to}.html`)}`, result.html)
         }
-        const { emailSettings } = audience
         const params = {
             from: emailSettings.from,
             fromname: emailSettings.fromName,
@@ -29,7 +33,9 @@ export async function send(template, data, audience, to, subject) {
             subject: `${subject} ${Math.random() * 100}`,
             html: result.html
         }
-        const email = await sendEmail(new sendgrid.Email(params))
+        const sendgridEmail = new sendgrid.Email(params)
+        sendgridEmail.setASMGroupID(groupId)
+        const email = await sendEmail(sendgridEmail)
         console.log('email sent: ', email)
         return { email }
     } catch (err) {

@@ -1,0 +1,200 @@
+<style media="all" type="text/css">
+*
+    {
+        -webkit-text-size-adjust:none;
+        -ms-text-size-adjust:none
+    }
+    #outlook a
+    {
+        padding:0
+    }
+    .ReadMsgBody,.ExternalClass
+    {
+        width:100%
+    }
+    .ExternalClass p
+    {
+        line-height:inherit;
+        Margin-top:0!important;
+        Margin-bottom:0!important
+    }
+    .ecximg,.ecximage,.ecxlogo,.ecximage-border
+    {
+        line-height:0
+    }
+    .ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div,.ExternalClass a,.ExternalClass p,.ExternalClass br,.ExternalClass strong
+    {
+        line-height:inherit
+    }
+    html
+    {
+        width:100%
+    }
+    body
+    {
+        width:100%;
+        height:100%;
+        background-color:#f8fdff;
+        margin:0;
+        padding:0;
+        -webkit-font-smoothing:antialiased
+    }
+    .yshortcuts a
+    {
+        border-bottom:none!important
+    }
+    p
+    {
+        margin:0
+    }
+    td[class*="h1"]
+    {
+        text-shadow:1px 1px 6px rgba(0,0,77,.35)
+    }
+    @media (min-width: 641px) and (max-width: 768px) {
+        td[class="table-wrap"]
+        {
+            padding:0!important
+        }       
+        table[class="main-table"],table[class="table-wrap"]
+        {
+            width:100%!important;
+            clear:both;
+            min-width:0!important
+        }       
+        td[class~="image"] img
+        {
+            width:100%!important;
+            height:auto!important
+        }       
+        table[class~="col-50"]
+        {
+            width:50%!important
+        }       
+        td[class~="sp-tablet"]
+        {
+            height:45px!important;
+            line-height:45px!important
+        }       
+        td[class="bg-left"]
+        {
+            padding-left:0!important
+        }       
+        td[class="bg-right"]
+        {
+            padding-right:0!important
+        }       
+        td[class="bg-left"] > table,td[class="bg-right"] > table
+        {
+            width:280px
+        }
+    }
+    </style>
+    <style type="text/css">
+@media only screen and (max-width: 640px) {
+        td[class="table-wrap"]
+        {
+            padding:0!important
+        }       
+        table[class="main-table"]
+        {
+            width:100%!important;
+            clear:both;
+            min-width:0!important
+        }       
+        table[class="container"]
+        {
+            width:280px!important
+        }       
+        table[class="container-small"]
+        {
+            width:92%!important
+        }       
+        td[class="bg-left"]
+        {
+            padding-left:55px!important;
+            background-size:contain
+        }       
+        td[class="bg-right"]
+        {
+            padding-right:55px!important;
+            background-size:contain
+        }       
+        td[class="b-inner"]
+        {
+            padding:0 20px!important
+        }       
+        table[class*="m-w100"],td[class*="m-w100"]
+        {
+            width:100%!important;
+            padding:0!important
+        }       
+        div[class*="column"]
+        {
+            display:block!important;
+            max-width:100%!important
+        }       
+        td[class~="layout-bg"],td[class~="header"]
+        {
+            background-size:cover
+        }       
+        table[class="nav"]
+        {
+            width:100%!important;
+            clear:both;
+            text-align:center
+        }       
+        table[class="nav"] .text
+        {
+            width:33%
+        }       
+        td[class*="h1"]
+        {
+            font-size:38px!important
+        }       
+        td[class*="h1"] span
+        {
+            font-size:30px!important
+        }       
+        td[class="h0"]
+        {
+            display:none
+        }       
+        td[class="h50"]
+        {
+            height:50px!important;
+            line-height:50px!important
+        }       
+        td[class="h30"]
+        {
+            height:30px!important;
+            line-height:30px!important
+        }       
+        td[class="m-tbl-wrap"]
+        {
+            padding:0 30px
+        }       
+        table[class="btn-table"] td,table[class="btn-table-2"] td,table[class="btn-table-3"] td
+        {
+            padding:0!important
+        }       
+        table[class="btn-table"] td a,table[class="btn-table-2"] td a,table[class="btn-table-3"] td a
+        {
+            display:block;
+            padding:18px 45px
+        }       
+        td[class="image"] img,td[class="image-border"] img
+        {
+            width:100%!important;
+            height:auto!important
+        }       
+        td[class="image-border"]
+        {
+            padding:10px!important
+        }       
+        table[class="footer"] .text
+        {
+            text-align:center!important
+        }
+    }
+    </style>

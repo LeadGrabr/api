@@ -13,10 +13,18 @@ export default class GuestLeadConfirm {
     async send() {
         const { lead, template, formatSubject } = this
         const { audience, email } = lead
-        if (!email) {
+        if (!email || !audience) {
             return null
         }
-        const result = await send(template, lead, audience, email, formatSubject(audience))
+        const { sendgridGroupId, emailSettings } = audience
+        const result = await send({
+            template,
+            sendgridGroupId,
+            data: lead,
+            emailSettings,
+            to: email,
+            subject: formatSubject(audience)
+        })
         return result
     }
 }

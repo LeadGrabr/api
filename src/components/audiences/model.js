@@ -16,11 +16,18 @@ const joiSchema = Joi.object({
     name: Joi.string().required().meta({
         index: true
     }),
+    sendgridGroupId: Joi.number().required(),
     url: Joi.string(),
     emailSettings: Joi.object({
         from: Joi.string().required(),
         fromName: Joi.string().required(),
         domain: Joi.string().required()
+    }),
+    templateResources: Joi.object({
+        images: Joi.object({
+            small: Joi.string(),
+            header: Joi.string()
+        }).required()
     }),
     availableLeadSources: Joi.array().items(
         Joi.string().valid(_.values(leadSource))
