@@ -13,7 +13,8 @@ export function getTemplate(templateName) {
     return new EmailTemplate(templatePath, {
         juiceOptions: {
             preserveMediaQueries: true,
-            removeStyleTags: false
+            preserveImportant: true,
+            removeStyleTags: true
         }
     })
 }
