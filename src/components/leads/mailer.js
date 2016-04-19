@@ -8,7 +8,6 @@ export default class Mailer {
     }
 
     async populateAudience(lead) {
-        console.log('populateAudience', lead)
         return Lead.findById(lead._id)
             .populate({
                 path: 'audience',
@@ -17,10 +16,12 @@ export default class Mailer {
     }
 
     async getSubscriberInformation(lead) {
-        console.log('getSubscriberInformation: ', lead)
         return Subscription.find({
             audience: lead.audience._id,
             subscriptionType: subscriptionType.Email
+        }).populate({
+            path: 'client',
+            model: 'Client'
         })
     }
 
@@ -33,12 +34,9 @@ export default class Mailer {
             const mailers = [ClientLeadMailer, GuestLeadMailer]
             const sendResults = mailers.map(async (MailerInstance) => {
                 const instance = new MailerInstance(lead)
-                console.log('instance: ', instance)
                 const sentResult = await instance.send()
-                console.log('sentResult: ', sentResult)
                 return sentResult
             })
-            console.log('sendResults: ', sendResults)
             return sendResults
         } catch (err) {
             console.log('err: ', err)

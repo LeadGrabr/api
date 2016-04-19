@@ -6,17 +6,25 @@ export default class GuestLeadConfirm {
         this.template = getTemplate('guestLeadConfirm')
     }
 
-    formatSubject({ name }) {
-        return `${name} is trying to reach you`
+    formatSubject(audienceName, leadName) {
+        return `${audienceName} is trying to reach ${leadName}`
     }
 
     async send() {
         const { lead, template, formatSubject } = this
         const { audience, email } = lead
-        if (!email) {
+        if (!email || !audience) {
             return null
         }
-        const result = await send(template, lead, audience, email, formatSubject(audience))
+        const { sendgridGroupId, emailSettings } = audience
+        const result = await send({
+            template,
+            sendgridGroupId,
+            data: lead,
+            emailSettings,
+            to: email,
+            subject: formatSubject(audience.name, lead.name)
+        })
         return result
     }
 }

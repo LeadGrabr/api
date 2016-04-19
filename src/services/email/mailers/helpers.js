@@ -8,29 +8,34 @@ import path from 'path'
 import fs from 'fs'
 
 export function getTemplate(templateName) {
-    console.log('getTemplate: ', templateName)
     const templatePath = path.join(__dirname, '../', 'templates', templateName)
-    return new EmailTemplate(templatePath)
+    return new EmailTemplate(templatePath, {
+        juiceOptions: {
+            preserveMediaQueries: true,
+            preserveImportant: true,
+            removeStyleTags: true
+        }
+    })
 }
 
-export async function send(template, data, audience, to, subject) {
+export async function send({ template, sendgridGroupId, data, emailSettings, to, subject, replyto }) { // eslint-disable-line max-len
     try {
         const result = await template.render(data)
-        console.log('result of render: ', result)
         if (__DEVELOPMENT__) {
             fs.writeFileSync(
                 `${__dirname}/.temp/${sanitize(`test-${subject}-${to}.html`)}`, result.html)
         }
-        const { emailSettings } = audience
         const params = {
             from: emailSettings.from,
             fromname: emailSettings.fromName,
+            replyto: replyto || emailSettings.from,
             to: [to],
             subject: `${subject} ${Math.random() * 100}`,
             html: result.html
         }
-        const email = await sendEmail(new sendgrid.Email(params))
-        console.log('email sent: ', email)
+        const sendgridEmail = new sendgrid.Email(params)
+        sendgridEmail.setASMGroupID(sendgridGroupId)
+        const email = await sendEmail(sendgridEmail)
         return { email }
     } catch (err) {
         return { err }
