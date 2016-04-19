@@ -26,6 +26,8 @@ const joiSchema = Joi.object({
     templateResources: Joi.object({
         images: Joi.object({
             small: Joi.string(),
+            medium: Joi.string(),
+            large: Joi.string(),
             header: Joi.string()
         }).required()
     }),

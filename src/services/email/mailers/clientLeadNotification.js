@@ -4,48 +4,42 @@ import { getTemplate, send } from './helpers'
 export default class ClientLeadNotificationMailer {
     constructor(lead) {
         this.lead = lead
-        console.log('getTemplate: ', getTemplate, 'clientLeadNotification')
         this.template = getTemplate('clientLeadNotification')
     }
 
-    formatSubject({ name }) {
-        return `A fresh new lead from ${name}`
-    }
-
-    getToEmails({ subscribers }) {
-        console.log('subscribers: ', subscribers)
-        return subscribers.map((sub) => sub.deliveryEmail)
+    formatSubject(audienceName, leadName, clientName) {
+        return `${audienceName}: ${leadName} is trying to reach ${clientName}`
     }
 
     async send() {
         // loop through the subscribers and send these leads out
-        const { lead, template, formatSubject, getToEmails } = this
-        const { audience } = lead
-        const emails = getToEmails(lead)
-        if (!emails || !audience) {
+        const { lead, template, formatSubject } = this
+        const { audience, subscribers } = lead
+        if (!subscribers || !audience) {
             return null
         }
         const { sendgridGroupId, emailSettings } = audience
-        console.log('emails: ', emails)
-        const results = emails.map((email) => {
-            if (!email) {
+        const results = subscribers.map((sub) => {
+            const { deliveryEmail, client } = sub
+            if (!deliveryEmail || !client) {
                 return null
             }
-            console.log('building for: ', email)
             return send({
                 template,
-                data: lead,
+                data: {
+                    lead,
+                    audience,
+                    client
+                },
                 emailSettings,
-                to: email,
+                replyto: lead.email,
+                to: deliveryEmail,
                 sendgridGroupId,
-                subject: formatSubject(audience)
+                subject: formatSubject(audience.name, lead.name, client.name)
             })
         })
-        console.log('results: ', results)
         try {
-            const allResults = await Promise.all(results)
-            console.log('results: ', allResults)
-            return allResults
+            return Promise.all(results)
         } catch (err) {
             return { err }
         }

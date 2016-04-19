@@ -6,8 +6,8 @@ export default class GuestLeadConfirm {
         this.template = getTemplate('guestLeadConfirm')
     }
 
-    formatSubject({ name }) {
-        return `${name} is trying to reach you`
+    formatSubject(audienceName, leadName) {
+        return `${audienceName} is trying to reach ${leadName}`
     }
 
     async send() {
@@ -23,7 +23,7 @@ export default class GuestLeadConfirm {
             data: lead,
             emailSettings,
             to: email,
-            subject: formatSubject(audience)
+            subject: formatSubject(audience.name, lead.name)
         })
         return result
     }
