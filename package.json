@@ -13,6 +13,7 @@
     "start": "npm run start-prod",
     "start-prod": "better-npm-run start-prod",
     "clean": "rm -rf dist && mkdir dist",
+    "dump-restore": "better-npm-run dump-dev; better-npm-run restore-prod",
     "build-server": "babel -d ./dist ./src -s",
     "build": "npm run clean && npm run build-server",
     "deploy": "npm run build && eb deploy",
@@ -49,6 +50,20 @@
         "NODE_PATH": "src",
         "PORT": 3000
       }
+    },
+    "dump-dev": {
+      "command": "mongodump --host=$MONGO_HOST -d $DEV_MONGO_DBNAME -u $DEV_MONGO_DB_USER -p $DEV_MONGO_PASS --verbose",
+      "env": {
+        "MONGO_HOST": "ec2-54-84-242-122.compute-1.amazonaws.com",
+        "DEV_MONGO_DBNAME": "leadgrabr-dev",
+        "DEV_MONGO_DB_USER": "leadgrabr-dev"
+      }
+    },
+    "restore-prod": {
+      "command": "mongorestore --host=$MONGO_HOST -d $PROD_MONGO_DBNAME -u $PROD_MONGO_DB_USER -p $PROD_MONGO_PASS --verbose --drop dump/$DEV_MONGO_DBNAME/",
+      "env": {
+        "MONGO_HOST": "ec2-54-84-242-122.compute-1.amazonaws.com"
+      }      
     }
   },
   "repository": {
@@ -82,6 +97,7 @@
     "sendgrid": "^2.0.0",
     "source-map-support": "^0.4.0",
     "strict-mode": "^0.5.0",
+    "twilio": "^2.9.1",
     "winston": "^2.2.0"
   },
   "devDependencies": {

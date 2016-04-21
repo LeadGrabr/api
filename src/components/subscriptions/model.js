@@ -3,6 +3,7 @@ import { setup } from 'helpers/crud'
 import { subscriptionType } from 'helpers/constants'
 import Joi from 'joi'
 import _ from 'lodash'
+import { phone } from 'helpers/customValidators'
 
 const joiSchema = Joi.object({
     client: Joi.any().meta({
@@ -14,7 +15,10 @@ const joiSchema = Joi.object({
         ref: 'Audience'
     }).required(),
     subscriptionType: Joi.string().valid(_.values(subscriptionType)).required(),
-    deliveryEmail: Joi.string().email().required(),
+    deliverTo: {
+        email: Joi.string().email(),
+        phone
+    },
     createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })
 

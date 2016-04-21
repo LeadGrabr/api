@@ -20,8 +20,8 @@ export default class ClientLeadNotificationMailer {
         }
         const { sendgridGroupId, emailSettings } = audience
         const results = subscribers.map((sub) => {
-            const { deliveryEmail, client } = sub
-            if (!deliveryEmail || !client) {
+            const { deliverTo: { email }, client } = sub
+            if (!email || !client) {
                 return null
             }
             return send({
@@ -33,7 +33,7 @@ export default class ClientLeadNotificationMailer {
                 },
                 emailSettings,
                 replyto: lead.email,
-                to: deliveryEmail,
+                to: email,
                 sendgridGroupId,
                 subject: formatSubject(audience.name, lead.name, client.name)
             })

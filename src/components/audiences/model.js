@@ -1,6 +1,6 @@
 import { Schema, model, joigoose } from 'config/mongoose'
 import { setup } from 'helpers/crud'
-import { leadSource } from 'helpers/constants'
+import { leadSource, twilioRecordTypes } from 'helpers/constants'
 import Joi from 'joi'
 import _ from 'lodash'
 
@@ -22,6 +22,12 @@ const joiSchema = Joi.object({
         from: Joi.string().required(),
         fromName: Joi.string().required(),
         domain: Joi.string().required()
+    }),
+    phoneSettings: Joi.object({
+        inbound: Joi.string().regex(/^[\+0-9]{10,16}$/).required().meta({ index: true }),
+        record: Joi.string().valid(_.values(twilioRecordTypes))
+            .required().default(twilioRecordTypes.recordFromAnswer),
+        timeLimit: Joi.number().default(1200).required()
     }),
     templateResources: Joi.object({
         images: Joi.object({
