@@ -1,5 +1,6 @@
 import express from 'express'
 import restify from './restify'
+import { default as twilioRoutes } from './twilio'
 
 const router = express.Router()    // eslint-disable-line new-cap
 
@@ -9,5 +10,7 @@ router.get('/health-check', (req, res) =>
 )
 
 restify(router)
+
+router.use('/twilio', twilioRoutes)
 
 export default router

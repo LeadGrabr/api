@@ -13,6 +13,11 @@ import routes from 'routes'
 import config from 'config/config'
 import APIError from 'helpers/APIError'
 
+const xml = (res) => (data) => {
+    res.set('Content-Type', 'text/xml')
+    res.send(data)
+}
+
 const app = express()
 
 if (config.env === 'development') {
@@ -26,6 +31,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(compress())
 app.use(methodOverride())
+app.use((req, res, next) => {
+    res.xml = xml(res)
+    next()
+})
 
 // disable 'X-Powered-By' header in response
 app.disable('x-powered-by')

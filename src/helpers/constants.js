@@ -8,3 +8,9 @@ export const subscriptionType = {
     Email: 'email',
     SMS: 'sms'
 }
+
+export const twilioRecordTypes = {
+    doNotRecord: 'do-not-record',
+    recordFromAnswer: 'record-from-answer',
+    recordFromRinging: 'record-from-ringing'
+}
