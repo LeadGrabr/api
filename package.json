@@ -25,6 +25,7 @@
     "start-prod": {
       "command": "node --harmony ./dist/index.js",
       "env": {
+        "API_URL": "http://api.leadgrabr.com",
         "NODE_ENV": "production",
         "NODE_PATH": "dist"
       }
@@ -32,6 +33,7 @@
     "start-debug": {
       "command": "nodemon --watch src --exec 'npm run lint && babel-node --debug ./src/index.js'",
       "env": {
+        "API_URL": "http://lgrab.ngrok.io",
         "NODE_ENV": "development",
         "MONGO_HOST": "ec2-54-84-242-122.compute-1.amazonaws.com",
         "MONGO_DBNAME": "leadgrabr-dev",
@@ -43,6 +45,7 @@
     "start-dev": {
       "command": "nodemon --watch src --exec 'npm run lint && babel-node ./src/index.js'",
       "env": {
+        "API_URL": "http://lgrab.ngrok.io",
         "NODE_ENV": "development",
         "MONGO_HOST": "ec2-54-84-242-122.compute-1.amazonaws.com",
         "MONGO_DBNAME": "leadgrabr-dev",
