@@ -2,7 +2,7 @@ import { Schema, model, joigoose } from 'config/mongoose'
 import { setup } from 'helpers/crud'
 import { userRoles } from 'helpers/constants'
 import Joi from 'joi'
-import { hashPassword, generateSecret } from './security'
+import { hashPassword, generateSecret, createToken, validatePassword } from './security'
 import _ from 'lodash'
 
 const joiSchema = Joi.object({
@@ -13,7 +13,7 @@ const joiSchema = Joi.object({
     }),
     password: Joi.string().regex(/[a-zA-Z0-9]{3,250}/).required(),
     role: Joi.string().required().valid(_.values(userRoles)),
-    secret: Joi.string().required(),
+    secret: Joi.string(),
     createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })
 
@@ -23,11 +23,18 @@ schema.pre('save', function preSave(next) {
     if (!user.isModified('password')) {
         return next()
     }
-    console.log(user)
     user.password = hashPassword(user.password)
     user.secret = generateSecret()
-    console.log(user)
-    return user
+    return next()
 })
+
+schema.methods.validatePassword = function validate(password) {
+    console.log('validating: ', password, this.password)
+    return validatePassword(password, this.password)
+}
+
+schema.methods.createToken = function tokenCreate(expiresIn = 60 * 60 * 24) {
+    return createToken(this, expiresIn)
+}
 
 export default model('User', schema)

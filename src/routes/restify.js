@@ -1,5 +1,5 @@
 import restify from 'express-restify-mongoose'
-import { transparentRoutes, authenticatedRoutes } from 'components/rest'
+import { transparentRoutes, authenticatedRoutes } from 'components/routes'
 import _ from 'lodash'
 import { default as jwt } from './jwt'
 
