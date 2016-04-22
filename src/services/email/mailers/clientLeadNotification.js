@@ -8,7 +8,7 @@ export default class ClientLeadNotificationMailer {
     }
 
     formatSubject(audienceName, leadName, clientName) {
-        return `${audienceName}: ${leadName} is trying to reach ${clientName}`
+        return `${audienceName}: ${leadName || 'A customer'} is trying to reach ${clientName}`
     }
 
     async send() {

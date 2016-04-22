@@ -7,7 +7,7 @@ export default class GuestLeadConfirm {
     }
 
     formatSubject(audienceName, leadName) {
-        return `${audienceName} is trying to reach ${leadName}`
+        return `${audienceName} is trying to reach ${leadName || 'you'}`
     }
 
     async send() {
