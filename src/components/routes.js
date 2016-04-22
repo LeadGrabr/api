@@ -8,8 +8,7 @@ import { default as User } from './users/routes'
 import { default as Subscription } from './subscriptions/routes'
 
 export const transparentRoutes = {
-    Lead,
-    User
+    Lead
 }
 export const authenticatedRoutes = {
     Audience,
@@ -17,5 +16,6 @@ export const authenticatedRoutes = {
     Communication,
     Market,
     Service,
-    Subscription
+    Subscription,
+    User
 }

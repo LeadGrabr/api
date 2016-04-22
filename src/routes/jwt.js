@@ -19,13 +19,3 @@ export function populateUser(router) {
     }
     router.use(expJwt({ secret: secretCallback, credentialsRequired: false }))
 }
-
-export function authenticate(router) {
-    return router.use((err, req, res, next) => {
-        console.log('checking req.user: ', req.user)
-        if (!req.user) {
-            return res.sendStatus(403)
-        }
-        return next(err)
-    })
-}

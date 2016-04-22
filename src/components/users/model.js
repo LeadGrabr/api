@@ -29,7 +29,6 @@ schema.pre('save', function preSave(next) {
 })
 
 schema.methods.validatePassword = function validate(password) {
-    console.log('validating: ', password, this.password)
     return validatePassword(password, this.password)
 }
 
