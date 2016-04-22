@@ -35,7 +35,6 @@ export default class Mailer {
             const sendResults = mailers.map(async (MailerInstance) => {
                 const instance = new MailerInstance(lead)
                 const sentResult = await instance.send()
-                console.log('sentResult, ', MailerInstance, ': ', sentResult)
                 return sentResult
             })
             return sendResults
