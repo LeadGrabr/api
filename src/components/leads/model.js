@@ -2,6 +2,7 @@ import { Schema, model, joigoose } from 'config/mongoose'
 import { setup } from 'helpers/crud'
 import { leadSource } from 'helpers/constants'
 import { default as Mailer } from './mailer'
+import { default as TwilioHandler } from './twilio'
 import Joi from 'joi'
 import _ from 'lodash'
 import { phone } from 'helpers/customValidators'
@@ -30,6 +31,8 @@ schema.post('save', (lead) => {
         return null
     }
     const mailer = new Mailer(lead)
-    return mailer.sendNotifications()
+    mailer.sendNotifications()
+    const twilioHandler = new TwilioHandler(lead)
+    return twilioHandler.handle()
 })
 export default model('Lead', schema)

@@ -1,43 +1,20 @@
 import twilio from 'twilio'
-import { Audience, Subscription, TwilioBlacklist } from 'components/models'
-import { subscriptionType } from 'helpers/constants'
-import _ from 'lodash'
-
-async function handleBlacklist(number, twiml) {
-    const blacklisted = await TwilioBlacklist.find({ number })
-    if (blacklisted && blacklisted.length > 0) {
-        twiml.reject()
-        return true
-    }
-    return null
-}
-
-async function getAudience(audienceId, twiml) {
-    const audience = await Audience.findById(audienceId)
-    if (!audience) {
-        twiml.reject()
-        return null
-    }
-    return audience
-}
-
-async function getSubscriberPhoneNumbers(audience) {
-    const subscribers = await Subscription.find({
-        audience: audience._id,
-        subscriptionType: subscriptionType.Phone
-    })
-    return subscribers.map((sub) => _.get(sub, 'deliverTo.phone'))
-}
+import { Audience, TwilioBlacklist } from 'components/models'
+import { getSubscriberPhoneNumbers } from '../helpers'
 
 export default (router) => {
     router.post('/call/:audienceId', async (req, res) => {
         const twiml = new twilio.TwimlResponse()
-        const blacklist = await handleBlacklist(req.body.from, twiml)
+        console.log('hitting this call place')
+        const number = req.body.from || req.query.from
+        const blacklist = await TwilioBlacklist.findOne({ number })
         if (blacklist) {
+            twiml.reject()
             return res.xml(twiml.toString())
         }
-        const audience = await getAudience(req.params.audienceId, twiml)
+        const audience = await Audience.findById(req.params.audienceId)
         if (!audience) {
+            twiml.reject()
             return res.xml(twiml.toString())
         }
         const numbers = await getSubscriberPhoneNumbers(audience)
