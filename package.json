@@ -14,7 +14,7 @@
     "start-prod": "better-npm-run start-prod",
     "clean": "rm -rf dist && mkdir dist",
     "dump-restore": "better-npm-run dump-dev; better-npm-run restore-prod",
-    "build-server": "babel -d ./dist ./src -s",
+    "build-server": "babel -d ./dist ./src -s; cp -R ./src/services/email/templates ./dist/services/email/templates",
     "build": "npm run clean && npm run build-server",
     "deploy": "npm run build && eb deploy",
     "dev": "better-npm-run start-dev",
