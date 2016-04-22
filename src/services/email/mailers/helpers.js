@@ -38,6 +38,7 @@ export async function send({ template, sendgridGroupId, data, emailSettings, to,
         const email = await sendEmail(sendgridEmail)
         return { email }
     } catch (err) {
+        console.log('send error: ', err)
         return { err }
     }
 }
