@@ -5,7 +5,6 @@ import { getSubscriberPhoneNumbers } from '../helpers'
 export default (router) => {
     router.post('/call/:audienceId', async (req, res) => {
         const twiml = new twilio.TwimlResponse()
-        console.log('hitting this call place')
         const number = req.body.from || req.query.from
         const blacklist = await TwilioBlacklist.findOne({ number })
         if (blacklist) {
