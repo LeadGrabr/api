@@ -1,7 +1,0 @@
-export { default as Audience } from './audiences/rest'
-export { default as Client } from './clients/rest'
-export { default as Communication } from './communications/rest'
-export { default as Lead } from './leads/rest'
-export { default as Market } from './markets/rest'
-export { default as Service } from './services/rest'
-export { default as Subscription } from './subscriptions/rest'

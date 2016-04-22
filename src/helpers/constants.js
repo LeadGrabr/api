@@ -14,3 +14,8 @@ export const twilioRecordTypes = {
     recordFromAnswer: 'record-from-answer',
     recordFromRinging: 'record-from-ringing'
 }
+
+export const userRoles = {
+    Client: 'client',
+    Admin: 'admin'
+}

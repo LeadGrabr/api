@@ -4,7 +4,9 @@ import Joi from 'joi'
 
 const joiSchema = Joi.object({
     name: Joi.string().required().meta({
-        index: true
+        index: { unique: true },
+        lowercase: true,
+        trim: true
     }),
     createdAt: Joi.date().default(Date.now, 'time of creation').required()
 })
