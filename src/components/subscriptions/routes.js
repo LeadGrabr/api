@@ -1,2 +1,2 @@
 import model from './model'
-export default (restify, router) => restify.serve(router, model)
+export default (restify, router, options) => restify.serve(router, model, options)

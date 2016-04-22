@@ -3,7 +3,7 @@ import { default as expJwt } from 'express-jwt'
 import { verifyTenantSecret } from 'components/users/security'
 import APIError from 'helpers/APIError'
 
-export default (router) => {
+export function populateUser(router) {
     const jwtError = (msg) => new APIError(msg, 403)
     const secretCallback = (req, payload, done) => {
         if (!payload) {
@@ -17,10 +17,13 @@ export default (router) => {
             return verifyTenantSecret(user.secret, done)
         })
     }
-    router.use(expJwt({ secret: secretCallback }))
-    router.use((err, req, res, next) => {
-        console.log('err: ', err)
-        if (err && err.name === 'UnauthorizedError') {
+    router.use(expJwt({ secret: secretCallback, credentialsRequired: false }))
+}
+
+export function authenticate(router) {
+    return router.use((err, req, res, next) => {
+        console.log('checking req.user: ', req.user)
+        if (!req.user) {
             return res.sendStatus(403)
         }
         return next(err)

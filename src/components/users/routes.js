@@ -4,7 +4,6 @@ export default (restify, router) => {
         const { email, password } = req.body
         console.log(req.body)
         const user = await User.findOne({ email: email.toLowerCase() })
-        console.log('user: ', user)
         if (!user || !user.validatePassword(password)) {
             return res.sendStatus(403)
         }
