@@ -8,7 +8,7 @@ export default class Mailer {
     }
 
     async populateAudience(lead) {
-        return Lead.findById(lead._id)
+        return Lead.findById(lead._id) // eslint-disable-line no-underscore-dangle
             .populate({
                 path: 'audience',
                 model: 'Audience'
@@ -17,7 +17,7 @@ export default class Mailer {
 
     async getSubscriberInformation(lead) {
         return Subscription.find({
-            audience: lead.audience._id,
+            audience: lead.audience._id, // eslint-disable-line no-underscore-dangle
             subscriptionType: subscriptionType.Email
         }).populate({
             path: 'client',
