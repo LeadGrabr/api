@@ -30,7 +30,7 @@ export async function send({ template, sendgridGroupId, data, emailSettings, to,
             fromname: emailSettings.fromName,
             replyto: replyto || emailSettings.from,
             to: [to],
-            subject: `${subject} ${Math.random() * 100}`,
+            subject: `${subject}`,
             html: result.html
         }
         const sendgridEmail = new sendgrid.Email(params)

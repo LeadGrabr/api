@@ -23,7 +23,7 @@ export function verifyTenantSecret(signedSecret, done) {
 export function createToken({ secret, _id, role }, expiresIn = 60 * 60 * 24) {
     const decoded = jwt.verify(secret, process.env.JWT_SECRET)
     const payload = { _id, role }
-    return jwt.sign(payload, decoded.secret, { subject: _id, expiresIn })
+    return jwt.sign(payload, decoded.secret, { subject: `${_id}`, expiresIn })
 }
 
 export function hashPassword(password) {
