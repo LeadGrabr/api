@@ -4,9 +4,11 @@ const sendEmail = Promise.promisify(sendgrid.send, { context: sendgrid })
 import httpStatus from 'http-status'
 import APIError from 'helpers/APIError'
 import { Audience, InboundEmail } from 'components/models'
+import multer from 'multer'
+const upload = multer()
 
 export default (router) => {
-    router.post('/inbound/:audienceId', async (req, res, next) => {
+    router.post('/inbound/:audienceId', upload, async (req, res, next) => {
         const audience = await Audience.findById(req.params.audienceId)
         if (!audience) {
             return res.sendStatus(httpStatus.NOT_FOUND)
