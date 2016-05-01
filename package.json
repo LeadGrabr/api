@@ -116,6 +116,7 @@
     "method-override": "^2.3.5",
     "mongoose": "^4.4.14",
     "morgan": "^1.7.0",
+    "multer": "^1.1.0",
     "sendgrid": "^2.0.0",
     "source-map-support": "^0.4.0",
     "strict-mode": "^0.5.0",
