@@ -1,3 +1,4 @@
+import Promise from 'bluebird'
 const sendgrid = require('sendgrid')(process.env.SENDGRID_MAILER_KEY)
 const sendEmail = Promise.promisify(sendgrid.send, { context: sendgrid })
 import httpStatus from 'http-status'
