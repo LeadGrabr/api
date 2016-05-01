@@ -23,6 +23,7 @@ export default (router) => {
         const email = new sendgrid.Email({
             to: 'kareem.janoudi@leadgrabr.com',
             from: 'inbound-parse@leadgrabr.com',
+            fromName: `Reply From: ${audience.name}`,
             subject: `${audience.name} Inbound Email`,
             text: 'A payload was just delivered via SendGrid\'s Inbound Parse API. It should be attached.'
         })
