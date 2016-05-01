@@ -8,7 +8,7 @@ import multer from 'multer'
 const upload = multer()
 
 export default (router) => {
-    router.post('/inbound/:audienceId', upload, async (req, res, next) => {
+    router.post('/inbound/:audienceId', upload.array(), async (req, res, next) => {
         const audience = await Audience.findById(req.params.audienceId)
         if (!audience) {
             return res.sendStatus(httpStatus.NOT_FOUND)
