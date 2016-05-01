@@ -13,7 +13,8 @@
     "start": "npm run start-prod",
     "start-prod": "better-npm-run start-prod",
     "clean": "rm -rf dist && mkdir dist",
-    "dump-restore": "better-npm-run dump-dev; better-npm-run restore-prod",
+    "sync-dev-to-prod": "better-npm-run dump-dev; better-npm-run restore-prod",
+    "sync-prod-to-dev": "better-npm-run dump-prod; better-npm-run restore-dev",
     "build-server": "babel -d ./dist ./src -s; cp -R ./src/services/email/templates ./dist/services/email/templates",
     "build": "npm run clean && npm run build-server",
     "deploy": "npm run build && eb deploy",
@@ -64,6 +65,20 @@
     },
     "restore-prod": {
       "command": "mongorestore --host=$MONGO_HOST -d $PROD_MONGO_DBNAME -u $PROD_MONGO_DB_USER -p $PROD_MONGO_PASS --verbose --drop dump/$DEV_MONGO_DBNAME/",
+      "env": {
+        "MONGO_HOST": "ec2-54-84-242-122.compute-1.amazonaws.com"
+      }
+    },
+    "restore-dev": {
+      "command": "mongorestore --host=$MONGO_HOST -d $DEV_MONGO_DBNAME -u $DEV_MONGO_DB_USER -p $DEV_MONGO_PASS --verbose --drop dump/$PROD_MONGO_DBNAME/",
+      "env": {
+        "MONGO_HOST": "ec2-54-84-242-122.compute-1.amazonaws.com",
+        "DEV_MONGO_DBNAME": "leadgrabr-dev",
+        "DEV_MONGO_DB_USER": "leadgrabr-dev"
+      }
+    },
+    "dump-prod": {
+      "command": "mongodump --host=$MONGO_HOST -d $PROD_MONGO_DBNAME -u $PROD_MONGO_DB_USER -p $PROD_MONGO_PASS --verbose",
       "env": {
         "MONGO_HOST": "ec2-54-84-242-122.compute-1.amazonaws.com"
       }
