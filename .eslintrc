@@ -1,5 +1,6 @@
 {
     "rules": {
+        "max-len": ["error", 140, 4, {"ignoreUrls": true, "ignoreComments": true}],
         "import/default": 0,
         "import/no-duplicates": 0,
         "import/named": 0,
