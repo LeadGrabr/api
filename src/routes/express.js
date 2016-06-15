@@ -41,7 +41,6 @@ app.disable('x-powered-by')
 
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors())
-app.options('*', cors()) // include before other routes
 
 // enable detailed API logging in dev env
 if (config.env === 'development') {
